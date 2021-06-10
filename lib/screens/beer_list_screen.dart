@@ -30,7 +30,7 @@ class BeerListScreen extends StatelessWidget {
           ),
           itemCount: DUMMY_BEERS.length,
           itemBuilder: (ctx, i) {
-            return BeerListItem(beerImg[i]);
+            return BeerListItem(beerImg[i], 'dummy name');
           },
         ),
       ),
