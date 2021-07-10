@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../dummy_data.dart';
+import '../providers/beers.dart';
 import '../widgets/beer_list_item.dart';
 
 class BeerListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final beerName = DUMMY_BEERS.map((beer) {
-      return beer.name;
-    }).toList();
-
-    final beerImg = DUMMY_BEERS.map((beer) {
-      return beer.imageUrl;
-    }).toList();
+    final beers = Provider.of<Beers>(context);
 
     return Container(
       decoration: BoxDecoration(
@@ -32,10 +27,11 @@ class BeerListScreen extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
-          itemCount: DUMMY_BEERS.length,
-          itemBuilder: (ctx, i) {
-            return BeerListItem(beerImg[i], beerName[i]);
-          },
+          itemCount: 3,
+          itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+            value: beers.items[i],
+            child: BeerListItem(),
+          ),
         ),
       ),
     );

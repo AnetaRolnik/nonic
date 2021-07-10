@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
+import './providers/beers.dart';
 import './screens/beer_list_screen.dart';
 import './screens/beer_detail_screen.dart';
 
@@ -18,37 +20,40 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Nonic App',
-      theme: ThemeData(
-        primarySwatch: MaterialColor(
-          Color.fromRGBO(0, 106, 78, 1).value,
-          {
-            50: Color.fromRGBO(0, 106, 78, 0.05),
-            100: Color.fromRGBO(0, 106, 78, 0.1),
-            200: Color.fromRGBO(0, 106, 78, 0.2),
-            300: Color.fromRGBO(0, 106, 78, 0.3),
-            400: Color.fromRGBO(0, 106, 78, 0.4),
-            500: Color.fromRGBO(0, 106, 78, 0.5),
-            600: Color.fromRGBO(0, 106, 78, 0.6),
-            700: Color.fromRGBO(0, 106, 78, 0.7),
-            800: Color.fromRGBO(0, 106, 78, 0.8),
-            900: Color.fromRGBO(0, 106, 78, 0.9),
-          },
-        ),
-        fontFamily: 'NotoSans',
-        textTheme: TextTheme(
-          headline1: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
+    return ChangeNotifierProvider(
+      create: (_) => Beers(),
+      child: MaterialApp(
+        title: 'Nonic App',
+        theme: ThemeData(
+          primarySwatch: MaterialColor(
+            Color.fromRGBO(0, 106, 78, 1).value,
+            {
+              50: Color.fromRGBO(0, 106, 78, 0.05),
+              100: Color.fromRGBO(0, 106, 78, 0.1),
+              200: Color.fromRGBO(0, 106, 78, 0.2),
+              300: Color.fromRGBO(0, 106, 78, 0.3),
+              400: Color.fromRGBO(0, 106, 78, 0.4),
+              500: Color.fromRGBO(0, 106, 78, 0.5),
+              600: Color.fromRGBO(0, 106, 78, 0.6),
+              700: Color.fromRGBO(0, 106, 78, 0.7),
+              800: Color.fromRGBO(0, 106, 78, 0.8),
+              900: Color.fromRGBO(0, 106, 78, 0.9),
+            },
+          ),
+          fontFamily: 'NotoSans',
+          textTheme: TextTheme(
+            headline1: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
           ),
         ),
+        home: BeerListScreen(),
+        routes: {
+          BeerDetailScreen.routeName: (ctx) => BeerDetailScreen(),
+        },
       ),
-      home: BeerListScreen(),
-      routes: {
-        BeerDetailScreen.routeName: (ctx) => BeerDetailScreen(),
-      },
     );
   }
 }

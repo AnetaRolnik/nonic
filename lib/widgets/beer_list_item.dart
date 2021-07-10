@@ -1,26 +1,31 @@
-import 'package:app/screens/beer_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/beer.dart';
+import '../screens/beer_detail_screen.dart';
 
 class BeerListItem extends StatelessWidget {
-
-  final beerImage;
-  final String name;
-
-  BeerListItem(this.beerImage, this.name);
-
   @override
   Widget build(BuildContext context) {
+    final beer = Provider.of<Beer>(context, listen: false);
+
     return Card(
       elevation: 5,
       margin: const EdgeInsets.all(5),
       child: Container(
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).pushNamed(BeerDetailScreen.routeName);
+            Navigator.of(context).pushNamed(
+              BeerDetailScreen.routeName,
+              arguments: beer.id,
+            );
           },
           child: Column(
             children: [
-              Text(name, style: TextStyle(fontWeight: FontWeight.bold),),
+              Text(
+                beer.name,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               Stack(
                 children: <Widget>[
                   ClipRRect(
@@ -29,7 +34,7 @@ class BeerListItem extends StatelessWidget {
                       topRight: Radius.circular(15),
                     ),
                     child: Image.asset(
-                      beerImage,
+                      beer.imageUrl,
                       height: 150,
                       width: double.infinity,
                       fit: BoxFit.contain,
