@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../dummy_data.dart';
-import '../widgets/beerListItem.dart';
+import '../widgets/beer_list_item.dart';
 
 class BeerListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final beerName = DUMMY_BEERS.map((beer) {
+      return beer.name;
+    }).toList();
+
     final beerImg = DUMMY_BEERS.map((beer) {
       return beer.imageUrl;
     }).toList();
@@ -30,7 +34,7 @@ class BeerListScreen extends StatelessWidget {
           ),
           itemCount: DUMMY_BEERS.length,
           itemBuilder: (ctx, i) {
-            return BeerListItem(beerImg[i], 'dummy name');
+            return BeerListItem(beerImg[i], beerName[i]);
           },
         ),
       ),

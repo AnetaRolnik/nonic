@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import './screens/beer_list_screen.dart';
+import './screens/beer_detail_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,6 +46,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: BeerListScreen(),
+      routes: {
+        BeerDetailScreen.routeName: (ctx) => BeerDetailScreen(),
+      },
     );
   }
 }
