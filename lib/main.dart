@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -25,28 +24,30 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Nonic App',
         theme: ThemeData(
-          primarySwatch: MaterialColor(
-            Color.fromRGBO(0, 106, 78, 1).value,
-            {
-              50: Color.fromRGBO(0, 106, 78, 0.05),
-              100: Color.fromRGBO(0, 106, 78, 0.1),
-              200: Color.fromRGBO(0, 106, 78, 0.2),
-              300: Color.fromRGBO(0, 106, 78, 0.3),
-              400: Color.fromRGBO(0, 106, 78, 0.4),
-              500: Color.fromRGBO(0, 106, 78, 0.5),
-              600: Color.fromRGBO(0, 106, 78, 0.6),
-              700: Color.fromRGBO(0, 106, 78, 0.7),
-              800: Color.fromRGBO(0, 106, 78, 0.8),
-              900: Color.fromRGBO(0, 106, 78, 0.9),
-            },
-          ),
+          primaryColor: Color.fromRGBO(254, 198, 0, 1),
+          accentColor: Color.fromRGBO(114, 114, 144, 1),
           fontFamily: 'NotoSans',
           textTheme: TextTheme(
             headline1: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color: Colors.black87,
+              color: Colors.white,
             ),
+            headline2: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            headline6: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            bodyText1: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              color: Colors.black,
+            )
           ),
         ),
         home: BeerListScreen(),
