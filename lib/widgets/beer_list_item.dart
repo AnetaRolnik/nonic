@@ -35,7 +35,7 @@ class BeerListItem extends StatelessWidget {
                     ),
                     child: Image.asset(
                       beer.imageUrl,
-                      height: 150,
+                      height: 140,
                       width: double.infinity,
                       fit: BoxFit.contain,
                     ),

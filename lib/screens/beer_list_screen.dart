@@ -27,7 +27,7 @@ class BeerListScreen extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
           ),
-          itemCount: 3,
+          itemCount: beers.items.length,
           itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
             value: beers.items[i],
             child: BeerListItem(),

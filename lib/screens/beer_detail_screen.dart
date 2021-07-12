@@ -28,17 +28,17 @@ class BeerDetailScreen extends StatelessWidget {
             width: double.infinity,
             fit: BoxFit.contain,
           ),
-          Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height - 350,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0)),
-            ),
-            child: Padding(
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30.0),
+                    topRight: Radius.circular(30.0)),
+              ),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,10 +46,13 @@ class BeerDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(
-                          loadedBeer.name,
-                          style: Theme.of(context).textTheme.headline2,
+                        Expanded(
+                          child: Text(
+                            loadedBeer.name,
+                            style: Theme.of(context).textTheme.headline2,
+                          ),
                         ),
+                        SizedBox(width: 5),
                         IconButton(
                           onPressed: () {},
                           icon: Icon(Icons.favorite_border_outlined),
@@ -57,6 +60,7 @@ class BeerDetailScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(height: 5),
                     Wrap(
                       children: loadedBeer.type
                           .map((type) => Container(
@@ -99,11 +103,15 @@ class BeerDetailScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 15),
-                    Text('Alkohol: ${loadedBeer.alcohol}%',
-                        style: Theme.of(context).textTheme.bodyText1),
+                    Text(
+                      'Alkohol: ${loadedBeer.alcohol}%',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                     SizedBox(height: 5),
-                    Text('Producent: ${loadedBeer.producer}',
-                        style: Theme.of(context).textTheme.bodyText1),
+                    Text(
+                      'Producent: ${loadedBeer.producer}',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                     SizedBox(height: 15),
                     Text(
                       loadedBeer.description,
