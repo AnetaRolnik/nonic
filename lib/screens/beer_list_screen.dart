@@ -9,29 +9,28 @@ class BeerListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final beers = Provider.of<Beers>(context);
 
-    return Container(
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Color.fromRGBO(9, 48, 40, 1), Color.fromRGBO(35, 122, 87, 1)])),
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+      appBar: AppBar(
+        elevation: 0,
         backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          title: Text('Nonic'),
+        title: Text(
+          'Nonic',
+          style: Theme.of(context).textTheme.headline1,
         ),
-        body: GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          itemCount: beers.items.length,
-          itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
-            value: beers.items[i],
-            child: BeerListItem(),
-          ),
+      ),
+      body: GridView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 30,
+          crossAxisSpacing: 10,
+          childAspectRatio: 1 / 1.3,
+        ),
+        itemCount: beers.items.length,
+        itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+          value: beers.items[i],
+          child: BeerListItem(),
         ),
       ),
     );
