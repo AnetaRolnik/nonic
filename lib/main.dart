@@ -24,27 +24,30 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Nonic App',
         theme: ThemeData(
-          primaryColor: Color.fromRGBO(254, 198, 0, 1),
-          accentColor: Color.fromRGBO(114, 114, 144, 1),
+          primaryColor: const Color.fromRGBO(254, 198, 0, 1),
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            secondary: const Color.fromRGBO(114, 114, 144, 1),
+          ),
           fontFamily: 'NotoSans',
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
             headline1: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
-            headline2: TextStyle(
+            headline2: const TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
-            headline6: TextStyle(
+            headline6: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
-            bodyText1: TextStyle(
+            bodyText1: const TextStyle(
               fontSize: 16,
+              height: 1.5,
               fontWeight: FontWeight.normal,
               color: Colors.black,
             )

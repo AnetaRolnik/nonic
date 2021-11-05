@@ -21,11 +21,11 @@ class BeerListItem extends StatelessWidget {
           ClipPath(
             clipper: BgClipper(),
             child: Container(
-              decoration: BoxDecoration(color: Colors.white),
+              decoration: const BoxDecoration(color: Colors.white),
             ),
           ),
           Align(
-            alignment: Alignment(-0.5, -2.0),
+            alignment: const Alignment(-0.5, -2.0),
             child: Image.asset(
               beer.imageUrl,
               height: 200,
@@ -33,7 +33,7 @@ class BeerListItem extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: Alignment(0.0, 0.85),
+            alignment: const Alignment(0.0, 0.85),
             child: Text(beer.name, style: Theme.of(context).textTheme.headline6),
           ),
         ],
