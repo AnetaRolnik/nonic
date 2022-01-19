@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
 
 class Beer with ChangeNotifier {
-  final String id;
+  final int id;
   final String name;
+  final String code;
   final String producer;
-  final List<String> type;
   final double alcohol;
-  final String barcode;
-  final double rating;
+  final List<String> type;
+  final String description;
+  final int rating;
   final int numberOfVotes;
   final String imageUrl;
-  final String description;
+  // final dynamic thumbnail;
 
   Beer({
     @required this.id,
     @required this.name,
+    @required this.code,
     @required this.producer,
-    @required this.type,
     @required this.alcohol,
-    @required this.barcode,
+    @required this.type,
+    @required this.description,
     @required this.rating,
     @required this.numberOfVotes,
     @required this.imageUrl,
-    @required this.description,
+    // @required this.thumbnail,
   });
 }

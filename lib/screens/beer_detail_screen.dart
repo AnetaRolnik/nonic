@@ -10,6 +10,7 @@ class BeerDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final beerId = ModalRoute.of(context).settings.arguments.toString();
+    print(beerId);
     final loadedBeer =
         Provider.of<Beers>(context, listen: false).findById(beerId);
 
@@ -22,12 +23,19 @@ class BeerDetailScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Image.asset(
-            loadedBeer.imageUrl,
-            height: 200,
-            width: double.infinity,
-            fit: BoxFit.contain,
-          ),
+          loadedBeer.imageUrl != null
+              ? Image.network(
+                  loadedBeer.imageUrl,
+                  height: 200,
+                  width: double.infinity,
+                  fit: BoxFit.contain,
+                )
+              : Image.asset(
+                  'assets/images/beers/b1.png',
+                  height: 200,
+                  width: double.infinity,
+                  fit: BoxFit.contain,
+                ),
           Expanded(
             child: Container(
               margin: const EdgeInsets.only(top: 15),

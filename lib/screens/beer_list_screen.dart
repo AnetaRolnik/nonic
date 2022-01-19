@@ -4,7 +4,18 @@ import 'package:provider/provider.dart';
 import '../providers/beers.dart';
 import '../widgets/beer_list_item.dart';
 
-class BeerListScreen extends StatelessWidget {
+class BeerListScreen extends StatefulWidget {
+  @override
+  State<BeerListScreen> createState() => _BeerListScreenState();
+}
+
+class _BeerListScreenState extends State<BeerListScreen> {
+  @override
+  void initState() {
+    Provider.of<Beers>(context, listen: false).fetchBeers();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final beers = Provider.of<Beers>(context);

@@ -26,15 +26,23 @@ class BeerListItem extends StatelessWidget {
           ),
           Align(
             alignment: const Alignment(-0.5, -2.0),
-            child: Image.asset(
-              beer.imageUrl,
-              height: 200,
-              fit: BoxFit.contain,
-            ),
+            child: beer.imageUrl != null
+                ? Image.network(
+                    beer.imageUrl,
+                    height: 200,
+                    fit: BoxFit.contain,
+                  )
+                : Image.asset(
+                    'assets/images/beers/b1.png',
+                    height: 200,
+                    width: double.infinity,
+                    fit: BoxFit.contain,
+                  ),
           ),
           Align(
             alignment: const Alignment(0.0, 0.85),
-            child: Text(beer.name, style: Theme.of(context).textTheme.headline6),
+            child:
+                Text(beer.name, style: Theme.of(context).textTheme.headline6),
           ),
         ],
       ),
