@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 import '../providers/beers.dart';
 import '../widgets/beer_list_item.dart';
@@ -10,6 +12,28 @@ class BeerListScreen extends StatefulWidget {
 }
 
 class _BeerListScreenState extends State<BeerListScreen> {
+  String barcode = 'Unknown';
+
+  Future<void> scanBarcode() async {
+    try {
+      final barcode = await FlutterBarcodeScanner.scanBarcode(
+        "#fe6200",
+        "Cancel",
+        true,
+        ScanMode.BARCODE,
+      );
+
+      if (!mounted) return;
+
+      setState(() {
+        this.barcode = barcode;
+      });
+      print(barcode);
+    } on PlatformException {
+      barcode = 'Failed to get platform version.';
+    }
+  }
+
   @override
   void initState() {
     Provider.of<Beers>(context, listen: false).fetchBeers();
@@ -43,6 +67,14 @@ class _BeerListScreenState extends State<BeerListScreen> {
           value: beers.items[i],
           child: BeerListItem(),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.qr_code_scanner,
+          color: Colors.white,
+        ),
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        onPressed: scanBarcode,
       ),
     );
   }
