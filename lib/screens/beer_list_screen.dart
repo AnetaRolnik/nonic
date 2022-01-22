@@ -37,20 +37,16 @@ class _BeerListScreenState extends State<BeerListScreen> {
     }
   }
 
-
   Future<void> goToDetail() async {
     final url =
-    Uri.parse('http://63.34.131.68/api-mobile/beers/?code=$barcode');
-    print(barcode);
-    print(url);
+    Uri.parse('http://63.34.131.68/api-mobile/beers/$barcode');
+
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
-      final results = extractedData['results'];
-      print(results[0]['id']);
       Navigator.of(context).pushNamed(
         BeerDetailScreen.routeName,
-        arguments: results[0]['id'],
+        arguments: extractedData['id'],
       );
     } catch (error) {
       throw (error);
