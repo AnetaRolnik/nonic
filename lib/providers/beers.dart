@@ -9,8 +9,7 @@ class Beers with ChangeNotifier {
   List<Beer> _items = [];
 
   Future<void> fetchBeers() async {
-    final url = Uri.parse(
-        'http://63.34.131.68/api-mobile/beers/?fbclid=IwAR0LPJ1LRMab6g8I7_qalu8Mj_l6voxPkmdOdusvkljsgRFGekO5vm4RfI0');
+    final url = Uri.parse('http://63.34.131.68/api-mobile/beers');
     try {
       final response = await http.get(url);
 
