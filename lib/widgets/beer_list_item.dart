@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/beers.dart';
 import '../providers/beer.dart';
 import '../screens/beer_detail_screen.dart';
 
@@ -11,10 +12,8 @@ class BeerListItem extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(
-          BeerDetailScreen.routeName,
-          arguments: beer.id,
-        );
+        Provider.of<Beers>(context, listen: false).fetchBeerDetails(beer.code);
+        Navigator.of(context).pushNamed(BeerDetailScreen.routeName);
       },
       child: Stack(
         children: <Widget>[

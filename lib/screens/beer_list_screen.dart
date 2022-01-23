@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:http/http.dart' as http;
 
 import '../providers/beers.dart';
 import '../widgets/beer_list_item.dart';
@@ -31,25 +28,10 @@ class _BeerListScreenState extends State<BeerListScreen> {
       setState(() {
         this.barcode = barcode;
       });
-      goToDetail();
+      Provider.of<Beers>(context, listen: false).fetchBeerDetails(barcode);
+      Navigator.of(context).pushNamed(BeerDetailScreen.routeName);
     } on PlatformException {
       barcode = 'Failed to get platform version.';
-    }
-  }
-
-  Future<void> goToDetail() async {
-    final url =
-    Uri.parse('http://63.34.131.68/api-mobile/beers/$barcode');
-
-    try {
-      final response = await http.get(url);
-      final extractedData = json.decode(response.body) as Map<String, dynamic>;
-      Navigator.of(context).pushNamed(
-        BeerDetailScreen.routeName,
-        arguments: extractedData['id'],
-      );
-    } catch (error) {
-      throw (error);
     }
   }
 
@@ -69,7 +51,7 @@ class _BeerListScreenState extends State<BeerListScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
-          'Kitek',
+          'Nonic',
           style: Theme.of(context).textTheme.headline1,
         ),
       ),

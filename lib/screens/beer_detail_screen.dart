@@ -9,10 +9,7 @@ class BeerDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final beerId = ModalRoute.of(context).settings.arguments.toString();
-    print(beerId);
-    final loadedBeer =
-        Provider.of<Beers>(context, listen: false).findById(beerId);
+    final beers = Provider.of<Beers>(context);
 
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -23,9 +20,9 @@ class BeerDetailScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          loadedBeer.imageUrl != null
+          beers.details[0].imageUrl != null
               ? Image.network(
-                  loadedBeer.imageUrl,
+            beers.details[0].imageUrl,
                   height: 200,
                   width: double.infinity,
                   fit: BoxFit.contain,
@@ -56,7 +53,7 @@ class BeerDetailScreen extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           child: Text(
-                            loadedBeer.name,
+                            beers.details[0].name,
                             style: Theme.of(context).textTheme.headline2,
                           ),
                         ),
@@ -70,7 +67,7 @@ class BeerDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Wrap(
-                      children: loadedBeer.type
+                      children: beers.details[0].type
                           .map((type) => Container(
                                 margin:
                                     const EdgeInsets.only(right: 3, bottom: 5),
@@ -106,26 +103,26 @@ class BeerDetailScreen extends StatelessWidget {
                             color: Theme.of(context).primaryColor),
                         const SizedBox(width: 7),
                         Text(
-                          (loadedBeer.rating).toString(),
+                          (beers.details[0].rating).toString(),
                           style: Theme.of(context).textTheme.headline6,
                         ),
                         const SizedBox(width: 5),
-                        Text('(${loadedBeer.numberOfVotes} głosów)'),
+                        Text('(${beers.items[0].numberOfVotes} głosów)'),
                       ],
                     ),
                     const SizedBox(height: 15),
                     Text(
-                      'Alkohol: ${loadedBeer.alcohol}%',
+                      'Alkohol: ${beers.details[0].alcohol}%',
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'Producent: ${loadedBeer.producer}',
+                      'Producent: ${beers.details[0].producer}',
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     const SizedBox(height: 15),
                     Text(
-                      loadedBeer.description,
+                      beers.details[0].description,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ],

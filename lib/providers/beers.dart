@@ -7,6 +7,7 @@ import './beer.dart';
 
 class Beers with ChangeNotifier {
   List<Beer> _items = [];
+  List<Beer> _details = [];
 
   Future<void> fetchBeers() async {
     final url = Uri.parse('http://63.34.131.68/api-mobile/beers');
@@ -42,8 +43,42 @@ class Beers with ChangeNotifier {
     }
   }
 
+  Future<void> fetchBeerDetails(String beerCode) async {
+    final url = Uri.parse('http://63.34.131.68/api-mobile/beers/$beerCode');
+    try {
+      final response = await http.get(url);
+
+      final extractedData =
+          jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+      final List<Beer> loadedDetails = [];
+
+      loadedDetails.add(
+        Beer(
+          id: extractedData['id'],
+          name: extractedData['name'],
+          code: extractedData['code'],
+          description: extractedData['description'],
+          alcohol: extractedData['alcohol'],
+          producer: extractedData['manufactured_by']['name'],
+          type: ['IPA', 'APA'],
+          rating: extractedData['rating'],
+          numberOfVotes: extractedData['rating_count'],
+          imageUrl: extractedData['thumbnail'],
+        ),
+      );
+      _details = loadedDetails;
+      notifyListeners();
+    } catch (error) {
+      throw (error);
+    }
+  }
+
   List<Beer> get items {
     return [..._items];
+  }
+
+  List<Beer> get details {
+    return [..._details];
   }
 
   Beer findById(String id) {

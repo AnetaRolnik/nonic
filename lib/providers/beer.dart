@@ -11,7 +11,6 @@ class Beer with ChangeNotifier {
   final int rating;
   final int numberOfVotes;
   final String imageUrl;
-  // final dynamic thumbnail;
 
   Beer({
     @required this.id,
@@ -24,6 +23,5 @@ class Beer with ChangeNotifier {
     @required this.rating,
     @required this.numberOfVotes,
     @required this.imageUrl,
-    // @required this.thumbnail,
   });
 }
