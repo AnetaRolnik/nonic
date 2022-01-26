@@ -59,8 +59,8 @@ class _BeerListScreenState extends State<BeerListScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          mainAxisSpacing: 30,
-          crossAxisSpacing: 10,
+          mainAxisSpacing: 35,
+          crossAxisSpacing: 15,
           childAspectRatio: 1 / 1.3,
         ),
         itemCount: beers.items.length,

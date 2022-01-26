@@ -6,7 +6,7 @@ class Beer with ChangeNotifier {
   final String code;
   final String producer;
   final double alcohol;
-  final List<String> type;
+  final List<dynamic> type;
   final String description;
   final int rating;
   final int numberOfVotes;

@@ -10,7 +10,6 @@ class BeerDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final beers = Provider.of<Beers>(context);
-
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
@@ -121,7 +120,8 @@ class BeerDetailScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     const SizedBox(height: 15),
-                    Text(
+                    if(beers.details[0].description != "[]")
+                      Text(
                       beers.details[0].description,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),

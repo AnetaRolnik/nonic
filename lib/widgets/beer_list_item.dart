@@ -24,7 +24,7 @@ class BeerListItem extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: const Alignment(-0.5, -2.0),
+            alignment: const Alignment(0.0, -2.0),
             child: beer.imageUrl != null
                 ? Image.network(
                     beer.imageUrl,
@@ -39,9 +39,12 @@ class BeerListItem extends StatelessWidget {
                   ),
           ),
           Align(
-            alignment: const Alignment(0.0, 0.85),
+            alignment: FractionalOffset.bottomCenter,
             child:
-                Text(beer.name, style: Theme.of(context).textTheme.headline6),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                  child: Text(beer.name, style: Theme.of(context).textTheme.headline6, textAlign: TextAlign.center,),
+                ),
           ),
         ],
       ),
