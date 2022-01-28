@@ -28,8 +28,11 @@ class _BeerListScreenState extends State<BeerListScreen> {
       setState(() {
         this.barcode = barcode;
       });
-      Provider.of<Beers>(context, listen: false).fetchBeerDetails(barcode);
-      Navigator.of(context).pushNamed(BeerDetailScreen.routeName);
+
+      if (barcode != '-1') {
+        Provider.of<Beers>(context, listen: false).fetchBeerDetails(barcode);
+        Navigator.of(context).pushNamed(BeerDetailScreen.routeName);
+      }
     } on PlatformException {
       barcode = 'Failed to get platform version.';
     }
