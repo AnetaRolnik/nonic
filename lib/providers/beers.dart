@@ -80,8 +80,4 @@ class Beers with ChangeNotifier {
   List<Beer> get details {
     return [..._details];
   }
-
-  Beer findById(String id) {
-    return _items.firstWhere((beer) => beer.id.toString() == id);
-  }
 }
